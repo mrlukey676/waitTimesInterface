@@ -39,6 +39,7 @@ elif park == "Disney's Animal Kingdom":
 submitPlanBtn = st.button("Get Ride Plan")
 
 if submitPlanBtn:
+    st.markdown("Generating your ride plan. This may take up to 20 seconds...")
     response = requests.get(f"http://192.168.1.224:8000/api/plan?ride1={ride1}&ride2={ride2}&ride3={ride3}&ride4={ride4}&ride5={ride5}")
     if response.status_code == 200:
         plan = response.json()
