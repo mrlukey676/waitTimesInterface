@@ -1,5 +1,6 @@
 import streamlit as st
 import requests
+from time import sleep
 
 try:
     RIDES = requests.get("http://192.168.1.224:8000/api/get-names").json()
@@ -39,7 +40,8 @@ elif park == "Disney's Animal Kingdom":
 submitPlanBtn = st.button("Get Ride Plan")
 
 if submitPlanBtn:
-    st.markdown("Generating your ride plan. This may take up to 20 seconds...")
+    st.markdown("*Generating your ride plan. This may take up to 20 seconds...*")
+    sleep(1)
     response = requests.get(f"http://192.168.1.224:8000/api/plan?ride1={ride1}&ride2={ride2}&ride3={ride3}&ride4={ride4}&ride5={ride5}")
     if response.status_code == 200:
         plan = response.json()
